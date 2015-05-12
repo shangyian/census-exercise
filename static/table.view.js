@@ -59,7 +59,7 @@ $(document).ready(function() {
          */
         var insertMissingRowCount = function() {
             $.getJSON(
-                $SCRIPT_ROOT + '/_get_variable_count', { field: $("#field_list").val() },
+                $SCRIPT_ROOT + '/_get_hidden_count', { field: $("#field_list").val() },
                 function(data) {
                     $("#info").append("<tr><td>Hidden Values:</td><td>" + data + "</td></tr>");
                 }

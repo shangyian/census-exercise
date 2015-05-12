@@ -37,12 +37,12 @@ def query_info():
 """
 Gets the hidden row count for a given field
 """
-@app.route('/_get_variable_count')
-def get_variable_count():
+@app.route('/_get_hidden_count')
+def get_hidden_count():
     field = request.args.get('field', 0, type=str)
     total_rows = int(db.field_var_count(field)[0])
-    missing_rows = total_rows - 100 if total_rows > 100 else 0
-    return Response(json.dumps(missing_rows),  mimetype='application/json')
+    hidden_rows = total_rows - 100 if total_rows > 100 else 0
+    return Response(json.dumps(hidden_rows),  mimetype='application/json')
 
 if __name__ == '__main__':
     app.run()
