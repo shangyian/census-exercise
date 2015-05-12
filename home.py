@@ -1,25 +1,18 @@
-
 import sys
 sys.path.append('../')
 
 from flask import Flask, jsonify, render_template, request, json, Response, Blueprint
 from database import Database
+
 app = Flask(__name__)
-
-front_end = Blueprint('simple_page', __name__,
-                      template_folder='templates')
-
 db = Database()
 
+"""
+Renders the main page
+"""
 @app.route('/')
 def index():
     return render_template('index.html')
-
-class Field:
-    def __init__(self, id, name, type):
-        self.id = id
-        self.name = name
-        self.type = type
 
 """
 Gets all fields available for the table, these are the
@@ -30,6 +23,10 @@ def get_fields():
     fields = map(lambda entry: entry[1], db.get_fields())
     return Response(json.dumps(fields),  mimetype='application/json')
 
+"""
+Gets the row data for a specific field (in this case it includes
+the value, the row count and average age)
+"""
 @app.route('/_query_info')
 def query_info():
     field = request.args.get('field', 0, type=str)
@@ -37,6 +34,9 @@ def query_info():
         field = "age"
     return Response(json.dumps(db.query_info(field)),  mimetype='application/json')
 
+"""
+Gets the hidden row count for a given field
+"""
 @app.route('/_get_variable_count')
 def get_variable_count():
     field = request.args.get('field', 0, type=str)
@@ -46,5 +46,3 @@ def get_variable_count():
 
 if __name__ == '__main__':
     app.run()
-
-get_variable_count()

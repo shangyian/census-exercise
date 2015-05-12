@@ -2,8 +2,8 @@ import sqlite3
 
 class Database:
     
-    def __init__(self, db="transit"):
-        self.conn = sqlite3.connect('/home/yian/Downloads/us-census.db')
+    def __init__(self, dbfile="/home/yian/Downloads/us-census.db"):
+        self.conn = sqlite3.connect(dbfile)
         self.cursor = self.conn.cursor()
 
     def get_fields(self):
