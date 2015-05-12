@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<script language="javascript" type="text/javascript" src="{{  url_for('static', filename='table.view.js') }}"></script>
+
+<div class="content-wrapper">
+  <form action="#" id="field_form">
+
+  </form>
+  <select name="field_list" form="field_form" id="field_list">
+  </select>
+
+  <table id="info"></table>
+</div>
+{% endblock %}
