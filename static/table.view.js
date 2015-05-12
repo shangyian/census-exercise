@@ -2,6 +2,10 @@ var TableViewer = {};
 
 $(document).ready(function() {
     TableViewer.fields = (function() {
+
+        /**
+         * Displays all table columns in a dropdown
+         */
         var displayFields = function() {
             $.getJSON(
                 $SCRIPT_ROOT + '/_get_fields', {},
@@ -17,6 +21,10 @@ $(document).ready(function() {
             );
         };
 
+        /**
+         * When a field is selected, displays information for that variable. In this case
+         * it includes the value, the row count and the average age.
+         */
         var selectField = function() {
             $("#field_list").change(function () {
                 $("#info").empty();
@@ -45,6 +53,10 @@ $(document).ready(function() {
             .change();
         };
 
+        /**
+         * Shows the number of hidden values (if the different types of values for
+         * the variable exceeds 100)
+         */
         var insertMissingRowCount = function() {
             $.getJSON(
                 $SCRIPT_ROOT + '/_get_variable_count', { field: $("#field_list").val() },
