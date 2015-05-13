@@ -1,0 +1,14 @@
+# This is the sqlite database file
+# By default it points to the provided US census info db, but
+# it can be configured with a different db file
+DATABASE_URI = '/var/www/census-exercise/census/us-census.db'
+
+# The table that we want our app to display
+# By default it points to the single table in the provided US census db
+MAIN_TABLE = 'census_learn_sql'
+
+# The name of the column we want to average
+COL_TO_AVG = 'age'
+
+# Limits the number of distinct values that can be pulled for a given field
+VAR_LIMIT = 100

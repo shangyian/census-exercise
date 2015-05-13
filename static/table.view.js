@@ -33,20 +33,15 @@ $(document).ready(function() {
                     $SCRIPT_ROOT + '/_query_info', { field: $("#field_list").val() },
                     function(data) {
                         nullCount = 0;
-                        $("#info").append("<tr><td><b>Value</b></td><td><b>Count</b></td><td><b>Average Age</b></td></tr>");
+                        $("#info").append("<tr><td><b>Value (" + $("#field_list").val() + ")</b></td><td><b>Count</b></td><td><b>Average Age</b></td></tr>");
                         for (var i = 0; i < data.length; i++) {
-                            if (data[i][0] === null) {
-                                nullCount += data[i][1];
-                            } else {
                                 var field_info = "<tr>";
                                 for (var j = 0; j < data[i].length; j++) {
                                     field_info += "<td>" + data[i][j] + "</td>";
                                 }
                                 field_info += "</tr>";
                                 $("#info").append(field_info);
-                            }
-                        }
-                        $("#info").append("<tr><td>Null Value Row Count (clipped):</td><td>" + nullCount + "</td></tr>");
+                        } 
                     }
                 );
             })
@@ -58,10 +53,19 @@ $(document).ready(function() {
          * the variable exceeds 100)
          */
         var insertMissingRowCount = function() {
-            $.getJSON(
-                $SCRIPT_ROOT + '/_get_hidden_count', { field: $("#field_list").val() },
+            var selectedField = $("#field_list").val();
+            $("#hidden").empty();
+	    $.getJSON(
+                $SCRIPT_ROOT + '/_get_hidden_count', { field: selectedField },
                 function(data) {
-                    $("#info").append("<tr><td>Hidden Values:</td><td>" + data + "</td></tr>");
+                    $("#hidden").append("<span>Hidden Values: " + data + "</span><br />");
+                }
+            );
+
+            $.getJSON(
+                $SCRIPT_ROOT + '/_get_hidden_row_count', { field: selectedField },
+                function(data) {
+                    $("#hidden").append("<span>Hidden Row Count: " + data + "</span><br />");
                 }
             );
         };

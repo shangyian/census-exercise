@@ -3,12 +3,19 @@
 <script language="javascript" type="text/javascript" src="{{  url_for('static', filename='table.view.js') }}"></script>
 
 <div class="content-wrapper">
-  <form action="#" id="field_form">
-
-  </form>
-  <select name="field_list" form="field_form" id="field_list">
-  </select>
-
-  <table id="info"></table>
+	<h2>US Census Explorer</h2>
+	<div class="row">
+		<div class="four columns">
+			<b style="padding-right:1.5em;">Variable:</b>
+			<select name="field_list" form="field_form" id="field_list"></select>
+		</div>
+		<div class="eight columns">
+  			<div id="hidden" style="background: #fff; padding: 0.7em; width: 100%;"></div>
+		</div>
+	</div>
+	<div class="row">
+  		<table id="info"></table>
+	</div>
 </div>
+
 {% endblock %}

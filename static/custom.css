@@ -1,8 +1,12 @@
 
 .content-wrapper {
-    padding: 10rem 8rem;
+    padding: 5em 8em;
 }
 
 .row {
     padding: 2rem;
+}
+
+table {
+    marin: 30em;
 }
